@@ -24,6 +24,14 @@
     <script src="js/monster.js"></script>
     <script src="js/util.js"></script>
     <script src="js/spell.js"></script>
-
+    <script>
+        setupCanvas();
+        generateLevel();
+        startingTile = randomPassableTile();
+        x = startingTile.x;
+        y = startingTile.y;
+        
+        setInterval(draw, 15);
+    </script>
 </body>
 </html>
