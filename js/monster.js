@@ -18,13 +18,41 @@ class Monster{
     }
     draw(){
         drawSprite(this.sprite, this.tile.x, this.tile.y);
+        this.drawHp();
+    }
+    drawHp(){
+        for(let i=0; i<this.hp;i++){
+            drawSprite(
+                9,
+                this.tile.x + (i%3)*(5/16),
+                this.tile.y - Math.floor(i/3)*(5/16)
+            );
+        }
     }
     tryMove(dx,dy){
         let newTile = this.tile.getNeighbor(dx,dy);
         if(newTile.passable){
-            this.move(newTile);
+            if(!newTile.monster){
+                this.move(newTile);
+            }else{
+                if(this.isPlayer != newTile.monster.isPlayer){
+                    newTile.monster.hit(1);
+                }
+            }
         }
         return true;
+    
+    }
+    hit(damage){
+        this.hp -= damage;
+        if(this.hp <= 0){
+            this.die();
+        }
+    }
+    die(){
+        this.dead = true;
+        this.tile.monster = null;
+        this.sprite = 1;
     }
     move(tile){
         if(this.tile){
