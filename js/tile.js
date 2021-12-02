@@ -5,6 +5,10 @@ class Tile{
         this.sprite = sprite;
         this.passable = passable;
     }
+    replace(newTileType){
+        tiles[this.x][this.y] = newTileType(this.x,this.y);
+        return tiles[this.x][this.y];
+    }
     dist(other){
         return Math.abs(this.x-other.x)+Math.abs(this.y-other.y);
     }
