@@ -2,6 +2,7 @@
 const tileSize = 64;
 const numTiles = 9;
 const uiWidth = 4;
+let level = 1;
 
 spritesheet = new Image();
 spritesheet.src = 'js/spritesheet.png';
@@ -43,5 +44,17 @@ function draw(){
             getTile(i,j).draw();
         }
     }
+    for(let i=0;i<monsters.length;i++){
+        monsters[i].draw();
+    }
     player.draw();
+}
+function tick(){
+    for(let k=monsters.length-1;k>=0;k--){
+        if(!monsters[k].dead){
+            monsters[k].update();
+        }else{
+            monster.splice(k,1);
+        }
+    }
 }

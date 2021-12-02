@@ -2,6 +2,7 @@ function generateLevel(){
     tryTo('generate map', function(){
         return generateTiles() == randomPassableTile().getConnectedTiles().length;
     });
+    generateMonsters();
 }
 function generateTiles(){
     let passableTiles=0;
@@ -38,4 +39,16 @@ function randomPassableTile(){
         return tile.passable && !tile.monster;
     });
     return tile;
+}
+function generateMonsters(){
+    monsters = [];
+    let numMonsters = level+1;
+    for(let i=1;i<numMonsters;i++){
+        spawnMonster();
+    }
+}
+function spawnMonster(){
+    let monsterType = shuffle([Imp,Blob,Rat,Bat,MushMan])[0];
+    let monster = new monsterType(randomPassableTile());
+    monsters.push(monster);
 }
