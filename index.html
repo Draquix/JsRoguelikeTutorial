@@ -27,9 +27,7 @@
     <script>
         setupCanvas();
         generateLevel();
-        startingTile = randomPassableTile();
-        x = startingTile.x;
-        y = startingTile.y;
+        player = new Player(randomPassableTile());
         
         setInterval(draw, 15);
     </script>

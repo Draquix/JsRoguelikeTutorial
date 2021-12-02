@@ -1,5 +1,4 @@
 
-let x = y = 0;
 const tileSize = 64;
 const numTiles = 9;
 const uiWidth = 4;
@@ -19,10 +18,10 @@ function setupCanvas(){
 
 
 document.querySelector("html").onkeypress = function(e){
-    if(e.key=="w") y--;
-    if(e.key=="s") y++;
-    if(e.key=="a") x--;
-    if(e.key=="d") x++;
+    if(e.key=="w") player.tryMove(0,-1);
+    if(e.key=="s") player.tryMove(0,1);
+    if(e.key=="a") player.tryMove(-1,0);
+    if(e.key=="d") player.tryMove(1,0);
 };
 function drawSprite(sprite,x,y){
     ctx.drawImage(
@@ -44,5 +43,5 @@ function draw(){
             getTile(i,j).draw();
         }
     }
-    drawSprite(0,x,y);
+    player.draw();
 }
